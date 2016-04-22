@@ -184,7 +184,7 @@ Barrels.prototype.populate = function(collections, done, autoAssociations) {
             // Primary key mapping
             that.idMap[modelName][itemIndex] = model[Model.primaryKey];
 
-            nextItem(memo+1);
+            nextItem(null,memo+1);
           });
         }, nextModel);
       });
