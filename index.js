@@ -146,7 +146,8 @@ Barrels.prototype.populate = function(collections, done, autoAssociations) {
         // Insert all the fixture items
         that.idMap[modelName] = [];
         var fixtureObjects = _.cloneDeep(that.data[modelName]);
-        async.each(fixtureObjects, function(item, nextItem) {
+        //async.each(fixtureObjects, function(item, nextItem) {
+        async.reduce(fixtureObjects,0, function(memo,item, nextItem) {
           // Item position in the file
           var itemIndex = fixtureObjects.indexOf(item);
 
@@ -183,7 +184,7 @@ Barrels.prototype.populate = function(collections, done, autoAssociations) {
             // Primary key mapping
             that.idMap[modelName][itemIndex] = model[Model.primaryKey];
 
-            nextItem();
+            nextItem(memo+1);
           });
         }, nextModel);
       });
